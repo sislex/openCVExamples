@@ -49,7 +49,6 @@ function openCvReady() {
             src.copyTo(dst);
             cv.cvtColor(dst, gray, cv.COLOR_RGBA2GRAY, 0);
             if (isFaceDetection) {
-                let faces;
                 try {
                     faceClassifier.detectMultiScale(gray, faces, 1.1, 3, 0);
                     // console.log(faces.size());
@@ -95,6 +94,6 @@ function openCvReady() {
         // Add navigation buttons
         addNavigationButtons();
         // schedule first one.
-        setTimeout(processVideo, 0);
+        setTimeout(processVideo, 1000);
     };
 }
