@@ -32,16 +32,20 @@ function openCvReady() {
         let eyes = new cv.RectVector();
         let faceClassifier = new cv.CascadeClassifier();
         let eyeClassifier = new cv.CascadeClassifier();
+
+        // load pre-trained classifiers
         let utils = new Utils('errorMessage');
-        let faceCascadeFile = 'haarcascade_frontalface_default.xml'; // path to face cascade xml
-        let eyeCascadeFile = 'haarcascade_eye.xml'; // path to eye cascade xml
-        // let upperBodyCascadeFile = 'haarcascade_upperbody.xml'; // path to upper body cascade xml
-        utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
-            faceClassifier.load(faceCascadeFile); // in the callback, load the face cascade from file
+        let faceCascadeFilePath = 'haarcascade_frontalface_default.xml';
+        let faceCascadeFileUrl = `../../common/cascades/${faceCascadeFilePath}`;
+        utils.createFileFromUrl(faceCascadeFilePath, faceCascadeFileUrl, () => {
+            faceClassifier.load(faceCascadeFilePath); // in the callback, load the face cascade from file
         });
-        utils.createFileFromUrl(eyeCascadeFile, eyeCascadeFile, () => {
-            eyeClassifier.load(eyeCascadeFile); // in the callback, load the eye cascade from file
+        let eyeCascadeFilePath = 'haarcascade_eye.xml';
+        let eyeCascadeFileUrl = `../../common/cascades/${eyeCascadeFilePath}`;
+        utils.createFileFromUrl(eyeCascadeFilePath, eyeCascadeFileUrl, () => {
+            eyeClassifier.load(eyeCascadeFilePath); // in the callback, load the eye cascade from file
         });
+
         const FPS = 24;
         function processVideo() {
             let begin = Date.now();
